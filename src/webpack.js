@@ -8,19 +8,7 @@ const svgrLoaders = ({ nextConfig, isServer }) => {
     options: svgrOptions
   }
 
-  const urlLoader = {
-    loader: require.resolve('url-loader'),
-    options: {
-      limit: inlineImageLimit,
-      fallback: require.resolve('file-loader'),
-      publicPath: `${assetPrefix}/_next/static/image/`,
-      outputPath: `${isServer ? '../' : ''}static/image/`,
-      name: '[path][name].[hash].[ext]',
-      esModule: esModule || false
-    }
-  }
-
-  return [{ test: svgRegExp, use: [svgrLoader, urlLoader] }]
+  return [{ test: svgRegExp, use: [svgrLoader] }]
 }
 
 module.exports =
